@@ -1,0 +1,11 @@
+.main {
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1;
+
+    height: 960px;
+    width: 960px;
+    /* max-width: 960x; */
+    border: 3px solid;
+}
+
