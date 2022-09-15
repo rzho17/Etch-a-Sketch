@@ -1,31 +1,41 @@
 const drawContainer = document.querySelector('main');
-const grid = document.querySelector('.grid');
+const slider = document.querySelector('.slider');
+const output = document.querySelector('.output');
+let update = () => output.textContent = parseInt(slider.value); 
 
-// const drawArea2 = document.createElement('div');
-// drawArea2.style.width = "100%";
-// drawArea2.style.border = "solid red";
+slider.addEventListener('input', changeSlide);
+slider.addEventListener('input', changeGrid);
+slider.addEventListener('input', update);
 
-// drawContainer.append(drawArea);
-// drawContainer.append(drawArea2);
-
-const gridBorder = () => {
-    
-}
-
-for (let i = 0; i < 16; i++) {
-    const rows = document.createElement('div');
-    rows.style.width = '100%';
-    rows.style.display = "flex";
-    drawContainer.append(rows);
-    for (let j = 0; j < 16; j++) {
-        const column = document.createElement('div');
-        column.style.width = " 100%";
-        column.style.border = "solid black";
-        rows.appendChild(column);
+function changeGrid () {
+    for (let i = 0; i < parseInt(slider.value); i++) {
+        const rows = document.createElement('div');
+        rows.classList.add('rows');
+        rows.style.width = '100%';
+        rows.style.display = "flex";
+        drawContainer.append(rows);
+        for (let j = 0; j < parseInt(slider.value); j++) {
+            const column = document.createElement('div');
+            column.classList.add('column');
+            column.style.width = " 100%";
+            column.style.border = "solid black";
+            rows.appendChild(column);
+        }
     }
-    
 }
+
+function changeSlide() {
+    while(drawContainer.hasChildNodes()){
+        drawContainer.removeChild(drawContainer.lastChild);
+    }
+}
+
+changeGrid();
 
 /*PSEUDO CODE
 create loop to add certain amount of div containers to playarea 
+
+create slider to adjust amount of grid,
+use that input into for loop,
+clear grid each time slider has new value,
 */

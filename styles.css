@@ -3,8 +3,8 @@
     flex-flow: row wrap;
     flex: 1;
 
-    height: 960px;
-    width: 960px;
+    height: 600px;
+    width: 600px;
     /* max-width: 960x; */
     border: 3px solid;
 }
