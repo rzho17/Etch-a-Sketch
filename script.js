@@ -3,6 +3,9 @@ const slider = document.querySelector('.slider');
 const output = document.querySelector('.output');
 let update = () => output.textContent = parseInt(slider.value); 
 
+// const colour = document.querySelector('.column');
+
+
 slider.addEventListener('input', changeSlide);
 slider.addEventListener('input', changeGrid);
 slider.addEventListener('input', update);
@@ -20,6 +23,14 @@ function changeGrid () {
             column.style.width = " 100%";
             column.style.border = "solid black";
             rows.appendChild(column);
+            
+            // Changes colour
+            column.addEventListener('mousedown', changeColour);
+            function changeColour(){
+
+                column.style.backgroundColor = "blue";
+            }
+
         }
     }
 }
@@ -30,7 +41,12 @@ function changeSlide() {
     }
 }
 
+
+
+
 changeGrid();
+
+
 
 /*PSEUDO CODE
 create loop to add certain amount of div containers to playarea 
