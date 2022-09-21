@@ -1,7 +1,9 @@
 const drawContainer = document.querySelector('main');
 let update = () => output.textContent = parseInt(slider.value); 
 let isDrawing = false;
-let buttonClick = false;
+
+
+
 
 
 //slider variables and events
@@ -11,16 +13,18 @@ slider.addEventListener('input', changeSlide);
 slider.addEventListener('input', changeGrid);
 slider.addEventListener('input', update);
 
+
 //button variables and events
 const colourPicker = document.querySelector('.colourPicker');
-const colourBtn = document.querySelector('.colourPicker');
+const colourBtn = document.querySelector('.chooseColour');
 const rainbowPicker = document.querySelector('.rainbowPicker');
 const reset = document.querySelector('.reset');
 
-rainbowPicker.addEventListener('click', () =>{
-    buttonClick = !buttonClick;
-    console.log(buttonClick);
-});
+rainbowPicker.addEventListener('click', drawRainbow);
+reset.addEventListener('click', resetGrid);
+
+
+
 
 function changeGrid () {
     // Creates rows of empty divs
@@ -39,7 +43,7 @@ function changeGrid () {
             rows.appendChild(column);
             
             // Creates initial click and sets colour of square
-            column.addEventListener('mousedown',changeColour);
+         /*   column.addEventListener('mousedown',changeColour);
             // column.addEventListener('mousedown',rainbowColour);
             function changeColour(){
                 column.style.backgroundColor = colourPicker.value;
@@ -50,21 +54,38 @@ function changeGrid () {
             };
 
             //creates the drawing effect by using mouse events to finding if variable is true or not
-            column.addEventListener('mousedown', (e) =>{
-                changeColour;
-                isDrawing = true;
-            });
-            column.addEventListener('mousemove', (e) => {
-                if(isDrawing) {
-                    column.addEventListener('mousemove', changeColour);
-                }
-            });
-            column.addEventListener('mouseup', (e) => {
-                if(isDrawing){
+            colourBtn.addEventListener('click', (e) =>{
+                column.addEventListener('mousedown', (e) =>{
                     changeColour;
-                    isDrawing = false;
-                }
-            });
+                    isDrawing = true;
+                });
+                column.addEventListener('mousemove', (e) => {
+                    if(isDrawing) {
+                        column.addEventListener('mousemove', changeColour);
+                    }
+                });
+                column.addEventListener('mouseup', (e) => {
+                    if(isDrawing){
+                        changeColour;
+                        isDrawing = false;
+                    }
+                });
+            })
+            // column.addEventListener('mousedown', (e) =>{
+            //     changeColour;
+            //     isDrawing = true;
+            // });
+            // column.addEventListener('mousemove', (e) => {
+            //     if(isDrawing) {
+            //         column.addEventListener('mousemove', changeColour);
+            //     }
+            // });
+            // column.addEventListener('mouseup', (e) => {
+            //     if(isDrawing){
+            //         changeColour;
+            //         isDrawing = false;
+            //     }
+            // });
 
             rainbowPicker.addEventListener('click', (e) =>{
                 column.addEventListener('mousedown', (e) =>{
@@ -91,10 +112,51 @@ function changeGrid () {
                 column.removeEventListener('mousemove',rainbowColour);
             }
             
+            console.log('hi'); */
+            
 
         }
     }
 }
+
+function draw(){
+    drawContainer.addEventListener('mousedown', (e) => {
+        e.target.style.backgroundColor = colourPicker.value;
+        isDrawing = true;
+    });
+    drawContainer.addEventListener('mousemove', (e) =>{
+        if(isDrawing === true) {
+            e.target.style.backgroundColor = colourPicker.value;
+        }
+    });
+    drawContainer.addEventListener('mouseup', (e) =>{
+        e.target.style.backgroundColor = colourPicker.value;
+        isDrawing = false;
+    });
+}
+
+function drawRainbow(){
+    drawContainer.addEventListener('mousedown', (e) => {
+        e.target.style.backgroundColor = "#" + rainbowColour;
+        isDrawing = true;
+    });
+    drawContainer.addEventListener('mousemove', (e) =>{
+        if(isDrawing === true) {
+            e.target.style.backgroundColor =  "#" + rainbowColour;
+        }
+    });
+    drawContainer.addEventListener('mouseup', (e) =>{
+        e.target.style.backgroundColor =  "#" + rainbowColour;
+        isDrawing = false;
+    });
+}
+
+function rainbowColour(){
+    let randomColour = Math.floor(Math.random()*16777215).toString(16);
+    return randomColour;
+};
+
+
 
 
 function changeSlide() {
@@ -102,6 +164,12 @@ function changeSlide() {
         drawContainer.removeChild(drawContainer.lastChild);
     }
 }
+
+function resetGrid(){
+    changeSlide();
+    changeGrid();
+}
+
 
 
 
@@ -112,7 +180,7 @@ function changeSlide() {
 
 
 changeGrid();
-
+draw();
 
 
 /*PSEUDO CODE
