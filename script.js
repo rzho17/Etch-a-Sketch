@@ -20,14 +20,19 @@ const colourPicker = document.querySelector('.colourPicker');
 const colourBtn = document.querySelector('.chooseColour');
 const rainbowPicker = document.querySelector('.rainbowPicker');
 const gridLines = document.querySelector('.toggleGrid');
+const shader = document.querySelector('.shader');
 const eraser = document.querySelector('.eraser');
 const reset = document.querySelector('.reset');
 
 colourBtn.addEventListener('click', draw);
 rainbowPicker.addEventListener('click', drawRainbow);
 gridLines.addEventListener('click', changeGridLine);
+shader.addEventListener('click',shade);
 eraser.addEventListener('click',getEraser);
 reset.addEventListener('click', resetGrid);
+
+
+
 
 
 
@@ -83,6 +88,24 @@ function drawRainbow(){
     });
     drawContainer.addEventListener('mouseup', (e) =>{
         e.target.style.backgroundColor =  "#" + rainbowColour();
+        isDrawing = false;
+    });
+}
+
+function shade(){
+    let opacity  = 0;
+    drawContainer.addEventListener('mousedown', (e) => {
+        e.target.style.opacity = opacity;
+        isDrawing = true;
+    });
+    drawContainer.addEventListener('mousemove', (e) =>{
+        if(isDrawing === true) {
+            e.target.style.opacity = opacity += .005 ;
+        }
+    });
+    drawContainer.addEventListener('mouseup', (e) =>{
+        e.target.style.opacity = opacity;
+        opacity = 0;
         isDrawing = false;
     });
 }
