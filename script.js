@@ -1,7 +1,8 @@
-const drawContainer = document.querySelector('main');
-let update = () => output.textContent = parseInt(slider.value); 
+const drawContainer = document.querySelector('.main');
+let update = () => output.textContent = "Grid Dimensions: " + parseInt(slider.value) + "*" + slider.value; 
 let isDrawing = false;
 let buttonClick = false;
+let shadeClick = false;
 
 
 
@@ -27,7 +28,8 @@ const reset = document.querySelector('.reset');
 colourBtn.addEventListener('click', draw);
 rainbowPicker.addEventListener('click', drawRainbow);
 gridLines.addEventListener('click', changeGridLine);
-shader.addEventListener('click',shade);
+// Shade function not working will fix later
+// shader.addEventListener('click',shade);
 eraser.addEventListener('click',getEraser);
 reset.addEventListener('click', resetGrid);
 
@@ -60,6 +62,7 @@ function changeGrid () {
     }
 }
 
+// targets the empty divs with event listeners and fills with selected colour, mousedown,mousemove,mouseup use to create click and drag
 function draw(){
     drawContainer.addEventListener('mousedown', (e) => {
         e.target.style.backgroundColor = colourPicker.value;
@@ -92,15 +95,17 @@ function drawRainbow(){
     });
 }
 
-function shade(){
+// Shade function is pretty broken, will come back in the future if able to solve it
+/*function shade(){ 
     let opacity  = 0;
+
     drawContainer.addEventListener('mousedown', (e) => {
         e.target.style.opacity = opacity;
         isDrawing = true;
     });
     drawContainer.addEventListener('mousemove', (e) =>{
         if(isDrawing === true) {
-            e.target.style.opacity = opacity += .005 ;
+            e.target.style.opacity = opacity += .01 ;
         }
     });
     drawContainer.addEventListener('mouseup', (e) =>{
@@ -108,20 +113,20 @@ function shade(){
         opacity = 0;
         isDrawing = false;
     });
-}
+} */
 
 function getEraser(){
     drawContainer.addEventListener('mousedown', (e) => {
-        e.target.style.backgroundColor = null;
+        e.target.style.backgroundColor = "white";
         isDrawing = true;
     });
     drawContainer.addEventListener('mousemove', (e) =>{
         if(isDrawing === true) {
-            e.target.style.backgroundColor =  null;
+            e.target.style.backgroundColor =  "white";
         }
     });
     drawContainer.addEventListener('mouseup', (e) =>{
-        e.target.style.backgroundColor = null;
+        e.target.style.backgroundColor = "white";
         isDrawing = false;
     });
 }
@@ -148,26 +153,9 @@ function resetGrid(){
     changeGrid();
 }
 
-
-
-
-
-
-
-
-
-
+// sets initial grid and allows for users to begin drawing immediately
 changeGrid();
 draw();
 
 
-/*PSEUDO CODE
-create loop to add certain amount of div containers to playarea 
 
-create slider to adjust amount of grid,
-use that input into for loop,
-clear grid each time slider has new value,
-
-add an event listener to add colour to the column divs
-create way so mousedown can constantly fill divs
-*/

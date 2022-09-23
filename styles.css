@@ -1,9 +1,114 @@
-.main {
-    display: grid;
+body {
+    background-color: #cfe5cc;
+    font-family: 'Roboto Mono', monospace, sans-serif;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    color: #2178ae;
+    font-family: 'Roboto Mono', monospace, sans-serif;
 
-    height: 600px;
-    width: 600px;
-    /* max-width: 960x; */
-    border: 3px solid;
+
 }
 
+.main_container {
+    display: flex;
+    justify-content: center;
+    margin-right: 350px;
+}
+
+.main {
+    display: grid;
+    height: 600px;
+    width: 600px;
+
+    margin-right: 400px;
+    /* max-width: 960x; */
+}
+
+.main_border {
+    width: 600px;
+    border-radius: 1em;
+    border: 50px solid #ef3c23;
+}
+
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    padding: 10px;
+    background-color: #e6f4e4;
+    border-radius: 1em;
+
+    margin: 10px;
+    margin-right: 150px;
+    width: 200px;
+    border: 3px solid #2178ae;
+}
+
+.text {
+    color: #2178ae;
+}
+
+.colourPicker{
+    height: 100px;
+    width: 200px;
+    background-color: #e6f4e4;
+    border-radius: 1em;
+}
+.chooseColour, .rainbowPicker, .toggleGrid, .shader, .eraser, .reset {
+    font-size: large;
+    width: 200px;
+    color: #2178ae;;
+
+    padding: 1em;
+    border: 2px solid;
+    border-radius: 1em;
+    opacity: .7;
+
+    font-family: 'Roboto Mono', monospace, sans-serif;
+    cursor: pointer;
+}
+
+.chooseColour:hover , .rainbowPicker:hover , .toggleGrid:hover , .shader:hover , .eraser:hover , .reset:hover {
+    opacity: 1;
+}
+
+
+
+.slider{
+    background: #2178ae;
+    opacity: .7;
+    cursor: pointer;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.output {
+    color: #2178ae;
+    font-size: smaller;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 50px;
+    width: 110%;
+    margin: 50px -50px -50px;
+    font-size: larger;
+    background-color: #2178ae;
+}
+
+.footer_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
